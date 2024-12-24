@@ -1,0 +1,452 @@
+/* Căn chỉnh toàn bộ trang */
+body {
+  background-color: #bbdefb;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  height: 100vh;
+  padding-top: 100px; /* Đẩy nội dung xuống để không bị header che */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Header với tiêu đề WEBCAM APP và các nút */
+#headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  box-sizing: border-box;
+  background-color: #e3f2fd; /* Màu nền */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Hiệu ứng ẩn mượt */
+  will-change: transform, opacity;
+}
+
+
+
+#leftSection, #rightSection {
+  display: flex;
+  gap: 20px; /* Khoảng cách giữa các nút */
+  align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+#leftSection {
+  justify-content: flex-start; /* Đẩy sang trái */
+}
+
+#rightSection {
+  justify-content: flex-end; /* Đẩy sang phải */
+}
+
+#historySection button, #homeSection button, #logoutBtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #4636f4;
+  color: white;
+}
+
+#historySection button:hover,
+#homeSection button:hover,
+#logoutBtn:hover {
+  background-color: #5a47f7; /* Màu xanh nhạt hơn */
+  transform: scale(1.05); /* Phóng to nhẹ */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+}
+
+#historySection button:active,
+#homeSection button:active,
+#logoutBtn:active {
+  transform: scale(0.95); /* Nhấn xuống */
+  background-color: #3b2dc4; /* Màu xanh đậm hơn khi bấm */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Đổ bóng gần hơn */
+}
+
+#welcomeMessage {
+  font-size: 16px;
+  color: black;
+  line-height: 40px;
+}
+
+
+/* Phần ứng dụng webcam */
+#webcamApp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Đảm bảo phần webcamApp chiếm toàn bộ chiều rộng */
+  height: calc(
+    100vh - 100px
+  ); /* Đảm bảo chiếm toàn bộ chiều cao trang trừ phần tiêu đề */
+  position: relative;
+  
+}
+
+/* Định dạng tiêu đề */
+#webcamAppTitle {
+  position: absolute; /* Đưa ra khỏi luồng bình thường để dễ căn chỉnh */
+  top: 0%; /* Đẩy xuống giữa màn hình theo chiều dọc */
+  left: 50%; /* Đẩy sang giữa màn hình theo chiều ngang */
+  transform: translate(-50%, -50%); /* Căn chỉnh chính xác vào giữa */
+  font-size: 48px; /* Tăng kích thước chữ */
+  color: #3f51b5; /* Màu xanh đậm */
+  text-align: center; /* Căn giữa nội dung */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng chữ */
+  z-index: 100; /* Đảm bảo nằm trên các phần tử khác */
+}
+
+
+/* Định dạng video */
+video {
+  margin: 0 auto; /* Căn giữa video */
+  border: 2px solid #ddd;
+  width: 640px;
+  height: 360px;
+  background-color: #000;
+}
+
+/* Định dạng cho phần hiển thị danh sách file */
+#fileListSection {
+  margin-top: 20px;
+  text-align: left;
+  padding: 20px;
+  
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.file-item {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+
+.form-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+}
+
+.form-group i {
+  color: #aaa;
+  margin-right: 10px;
+}
+
+
+/* Định dạng cho phần đăng nhập/đăng ký */
+#authSection {
+  border: 2px solid #ccc;
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  width: 100%;
+  margin-top: 20px;
+  height: auto;
+  margin-bottom: 0;
+  transition: height 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+  
+}
+
+
+#authSection h2 {
+  margin-bottom: 10px;
+  font-size: 24px; /* Kích thước chữ */
+
+}
+
+/* Định dạng cho phần form đăng ký/đăng nhập */
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth-container form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.auth-container form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4636f4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.auth-container form button:hover {
+   background-color: #673ab7; /* Màu tím đậm hơn */
+  transform: scale(1.05); /* Phóng to nhẹ */
+  transition: all 0.3s ease; 
+}
+
+.auth-container a {
+  color: #3f51b5; /* Màu xanh mặc định */
+  text-decoration: none; /* Bỏ gạch chân mặc định */
+  transition: all 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+}
+
+.auth-container a:hover {
+  color: #1e88e5; /* Màu xanh nhạt hơn khi hover */
+  text-decoration: underline; /* Gạch chân khi hover */
+}
+
+
+/* Căn chỉnh các nút điều khiển */
+.controls-container {
+  display: flex;
+  justify-content: center; /* Căn giữa các nút điều khiển */
+  align-items: center;
+  flex-direction: column; /* Đặt hướng dọc cho các nút */
+  gap: 20px; /* Khoảng cách giữa các nút */
+  margin-top: 20px;
+}
+
+/* Định dạng các nút điều khiển */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Khoảng cách giữa các nút trong button-container */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: green;
+  color: #fff;
+  transition: background-color 0.3s;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Đổi màu khi di chuột qua nút */
+button:hover {
+  background-color: #00b33f;
+}
+
+/* Định dạng nút bật/tắt webcam */
+/* Nút bật/tắt webcam */
+#onoffBtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#onoffBtn:hover {
+  background-color: #ff4d4d; /* Màu đỏ nhạt hơn */
+  transform: scale(1.05); /* Phóng to nhẹ */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+}
+
+#onoffBtn:active {
+  transform: scale(0.95); /* Nhấn xuống */
+  background-color: #c20000; /* Màu đỏ đậm hơn khi bấm */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Đổ bóng gần hơn */
+}
+
+/* Nút toàn màn hình, chụp ảnh */
+#fullscreenBtn, #capBtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#fullscreenBtn:hover,
+#capBtn:hover {
+  background-color: #00b33f; /* Màu xanh nhạt hơn */
+  transform: scale(1.05); /* Phóng to nhẹ */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+}
+
+#fullscreenBtn:active,
+#capBtn:active {
+  transform: scale(0.95); /* Nhấn xuống */
+  background-color: #00802b; /* Màu xanh đậm hơn khi bấm */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Đổ bóng gần hơn */
+}
+
+/* Định dạng phần hiển thị ảnh đã chụp */
+#capturedImageSection {
+  display: flex;
+  flex-direction: column; /* Đặt hướng dọc cho hình ảnh và các nút */
+  align-items: center; /* Căn giữa hình ảnh */
+  justify-content: center; /* Căn giữa theo chiều dọc */
+  margin-top: 20px;
+  width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng */
+}
+
+/* Định dạng hình ảnh đã chụp */
+#capturedImage {
+  max-width: 100%; /* Giúp hình ảnh không vượt quá chiều rộng của khung chứa */
+  height: auto; /* Để chiều cao tự động điều chỉnh */
+  border: 1px;
+  margin-bottom: 10px;
+}
+
+
+/* Định dạng cho các nút tải xuống và hủy */
+#downloadBtn,
+#clearBtn {
+  font-size: 10px; /* Điều chỉnh kích thước chữ */
+  padding: 2px 5px; /* Điều chỉnh khoảng cách bên trong */
+  width: auto; /* Tự động điều chỉnh chiều rộng theo nội dung */
+  height: auto; /* Tự động điều chỉnh chiều cao theo nội dung */
+  display: inline-block; /* Đảm bảo các nút hiển thị ngang hàng */
+  margin-top: 5px; /* Khoảng cách với hình ảnh */
+  background-color: #0b1f1969;
+}
+
+#downloadBtn:hover,
+#clearBtn:hover {
+  background-color: #0b1f1969;
+}
+
+/* Định dạng phần QR code */
+#qrCodeSection {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Căn giữa ngang */
+  justify-content: center; /* Căn giữa dọc */
+}
+
+#qrCodeImage {
+  width: 150px;
+  height: 150px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+}
+
+
+#fileInfoSection {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Căn chỉnh icon trong nút */
+button i {
+  margin-right: 10px;
+}
+
+/* Ẩn canvas */
+canvas {
+  display: none;
+  border: 1px solid #ddd;
+}
+
+
+#capturedImageSection{
+  display: none;
+}
+
+/* Khu vực hiển thị hình ảnh đã chụp */
+#capturedImageSection img {
+  max-width: 640px; /* Giúp hình ảnh không vượt quá chiều rộng của khung chứa */
+  height: auto; /* Để chiều cao tự động điều chỉnh */
+  margin-top: 10px;
+  display: block; /* Đảm bảo hình ảnh được hiển thị như một khối */
+  margin-left: auto; /* Căn giữa */
+  margin-right: auto; /* Căn giữa */
+}
+
+
+.hidden {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.visible {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+/* Nút "Xóa" */
+.delete-button {
+  display: inline-block; /* Kích thước nút phụ thuộc vào nội dung */
+  padding: 5px 15px; /* Điều chỉnh khoảng padding */
+  font-size: 12px; /* Kích thước chữ nhỏ hơn */
+  border-radius: 5px; /* Bo góc vừa phải */
+  width: auto !important; /* Đảm bảo không có width cố định */
+  margin-top: 5px;
+  background-color: #ff4d4d; /* Màu đỏ */
+  color: white;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #e60000; /* Màu đỏ đậm hơn */
+  transform: scale(1.05); /* Phóng to nhẹ */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+}
+
+.delete-button:active {
+  transform: scale(0.95); /* Nhấn xuống */
+  background-color: #b30000; /* Màu đỏ đậm hơn nữa khi bấm */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Đổ bóng gần hơn */
+}
+
+
+
+
+

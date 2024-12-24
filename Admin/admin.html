@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Client</title>
+    <link rel="stylesheet" href="./admin.css" />
+</head>
+<body>
+    <header>
+        <h1>WEBCAM APP - Quản lý người dùng</h1>
+    </header>
+
+    <!-- Form đăng nhập -->
+    <div id="loginForm">
+        <h3>Đăng nhập Admin</h3>
+        <input type="text" id="adminUsername" placeholder="Username" required>
+        <input type="password" id="adminPassword" placeholder="Password" required>
+        <button id="loginButton">Đăng nhập</button>
+        <p id="loginError" style="color: red; display: none;">Thông tin đăng nhập không hợp lệ</p>
+    </div>
+
+    <!-- Nội dung quản lý -->
+    <div id="adminContent" style="display: none;">
+        <!-- Container bao quanh các phần tử -->
+        <div class="top-navbar">
+            <!-- Nút "Trang Chủ", "Quản lý Webcam", "Thông báo" và "Đăng xuất" nằm trên cùng một hàng -->
+            <div id="homeButton" class="home-button">Trang Chủ</div>
+            <div id="manageWebcamButton" class="home-button">Quản Lý Webcam từ xa</div>
+            <div style="display: flex; justify-content: flex-end; margin: 10px;">
+                <!-- Nút Danh sách Người dùng -->
+                <button id="fetchUsersButton" style="display: none;">Danh sách Người dùng</button>
+            </div>
+            
+            <!-- Thông báo -->
+        <div style="display: flex; justify-content: flex-end; margin: 10px;">
+            
+            <button id="notificationButton" style="display: none;">Thông báo</button>
+        </div>
+        
+        <!-- Thống kê -->
+        <div style="display: flex; justify-content: flex-end; margin: 10px;">
+            <button id="statsButton" style="display: none;">Thống kê</button>
+        </div>
+
+        <!-- Thêm dòng thông báo chào mừng -->
+        <div id="welcomeMessage">
+            Xin chào quản trị viên
+        </div>
+        
+            <div >
+                <button id="logoutButton" class="home-button">Đăng xuất</button>
+            </div>
+            
+        </div>
+        <!-- Bảng webcam -->
+        <div id="webcamGrid" style="display: none; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin: 20px;">
+            <!-- Các webcam sẽ được hiển thị ở đây -->
+        </div>
+
+        <!-- Phần quản lý client -->
+        <h1 id="clientSectionTitle">Quản lý Client đang kết nối</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Thời gian bắt đầu kết nối</th>
+                    <th>Trạng thái Webcam</th>
+                </tr>
+            </thead>
+            <tbody id="clientTable"></tbody>
+        </table>
+
+        <div id="statsSection" style="display: none;">
+            <h3>Thống kê hệ thống</h3>
+            <p id="onlineUsers"></p>
+            <p id="offlineUsers"></p>
+            <p id="totalImages"></p>
+            <p id="topUploader"></p>
+        </div>
+        
+
+        <!-- Bảng Danh sách Người dùng -->
+        <div id="userListSection" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tài khoản</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="userTable"></tbody>
+            </table>
+        </div>
+
+        <!-- Chi tiết người dùng -->
+        <div id="userDetailSection" style="display: none;">
+            <h3>Thông tin người dùng: <span id="selectedUsername"></span></h3>
+            <div id="userInfo">
+                <p>Tài khoản: <span id="userAccount"></span></p>
+                <p>Mật khẩu: <span id="userPassword"></span></p>
+                <p>Số lượng ảnh đã tải lên: <span id="userImageCount"></span></p>
+            </div>
+            <button id="backToUsersButton">Quay lại</button>
+        </div>
+
+        <!-- Danh sách ảnh -->
+        <div id="userFilesSection" style="display: none;">
+            <h3>Danh sách ảnh của tài khoản: <span id="selectedUserForFiles"></span></h3>
+            <button id="backToFilesButton">Quay lại</button>
+            <div id="fileItems"></div>
+        </div>
+    </div>
+
+    <!-- Khu vực thông báo -->
+    <div id="notificationSection" style="display: none;">
+        <h3>Danh sách thông báo</h3>
+        <ul id="notificationList"></ul>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

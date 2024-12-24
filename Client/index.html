@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WEBCAM APP</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header chính chứa WEBCAM APP -->
+    <div id="headerContainer">
+      <div id="leftSection">
+        <div id="historySection">
+          <button id="historyBtn">
+            <i class="fas fa-history"></i> Lịch sử ảnh
+          </button>
+        </div>
+        <div id="homeSection">
+          <button id="homeBtn">
+            <i class="fas fa-home"></i> Trang Chủ
+          </button>
+        </div>
+      </div>
+      <h1 id="webcamAppTitle"><i class="fas fa-camera-retro"></i> WEBCAM APP</h1>
+      <div id="rightSection">
+        <span id="welcomeMessage"></span>
+        <div id="logoutSection">
+          <button id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i> Đăng xuất
+          </button>
+          
+        </div>
+      </div>
+    </div>
+    
+
+
+    <!-- Đăng nhập và Đăng ký -->
+    <div id="authSection" class="auth-container">
+      <!-- Form Đăng nhập -->
+      <div id="loginFormSection" style="display: block;">
+        <h2>Đăng nhập</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="loginUsername" placeholder="Tên người dùng" required />
+          </div>
+          <div class="form-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="loginPassword" placeholder="Mật khẩu" required />
+          </div>
+          <button type="submit" class="btn primary">
+            <i class="fas fa-sign-in-alt"></i> Đăng nhập
+          </button>
+        </form>
+        <p>
+          Bạn chưa có tài khoản? <a href="#register" id="registerLink" style="color: #4636f4;">Tạo tài khoản</a>
+        </p>
+      </div>
+    
+      <!-- Form Đăng ký -->
+      <div id="registerFormSection" style="display: none;">
+        <h2>Đăng ký</h2>
+        <form id="registerForm">
+          <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="registerUsername" placeholder="Tên người dùng" required />
+          </div>
+          <div class="form-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="registerPassword" placeholder="Mật khẩu" required />
+          </div>
+          <button type="submit" class="btn primary">
+            <i class="fas fa-user-plus"></i> Đăng ký
+          </button>
+        </form>
+        <p>
+          Đã có tài khoản? <a href="#login" id="loginLink" style="color: #4636f4;">Đăng nhập</a>
+        </p>
+      </div>
+    </div>
+    
+      
+      
+
+    <!-- Ứng dụng Webcam -->
+    <div id="webcamApp" style="display: none">
+      <video id="webcam" autoplay></video>
+
+      <!-- Canvas để hiển thị ảnh chụp -->
+      <canvas id="snapCanvas" style="display: none"></canvas>
+
+      <!-- Các nút điều khiển -->
+      <div class="controls-container">
+        <button id="onoffBtn" style="background-color: green">
+          <i class="fas fa-video"></i> Bật webcam
+        </button>
+        <div class="button-container">
+          <button id="fullscreenBtn">
+            <i class="fas fa-expand"></i> Toàn màn hình
+          </button>
+          <button id="capBtn">
+            <i class="fas fa-camera"></i> Chụp ảnh
+          </button>
+        </div>
+      </div>
+
+      <!-- Hiển thị ảnh đã chụp -->
+      <div id="capturedImageSection" style="display: none; text-align: center; margin-top: 20px">
+        <img
+          id="capturedImage"
+          src=""
+          alt="Captured Image"
+          style="width: 640px; height: 480px; border: 1px"
+        />
+        <div style="margin-top: 10px">
+          <button id="downloadBtn">
+            <i class="fas fa-download"></i> Tải xuống
+          </button>
+          <button id="clearBtn">
+            <i class="fas fa-times"></i> Hủy
+          </button>
+        </div>
+      </div>
+
+      <!-- Hiển thị mã QR -->
+      <div id="qrCodeSection" style="display: none; text-align: center; margin-top: 20px">
+        <h2>Mã QR</h2>
+        <img
+          id="qrCodeImage"
+          src=""
+          alt="QR Code"
+          style="width: 200px; height: 200px"
+        />
+      </div>
+
+      <!-- Hiển thị thông tin file -->
+      <div id="fileInfoSection" style="text-align: center; margin-top: 20px"></div>
+    </div>
+
+    <!-- Hiển thị lịch sử ảnh  -->
+    <div id="fileListSection" style="display: none; margin-top: 20px; text-align: center">
+      <h2>Danh sách ảnh đã tải lên</h2>
+      <!-- <button id="backBtn" style="background-color: #4636f4; color: white; border: none; cursor: pointer; margin-bottom: 20px;">
+        Quay lại
+      </button> -->
+      <div id="fileItems"></div> <!-- Chứa danh sách file -->
+    </div>
+
+    <script type="module" src="./script.js"></script>
+
+  </body>
+</html>
